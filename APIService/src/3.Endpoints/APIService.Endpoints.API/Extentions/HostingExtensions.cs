@@ -1,18 +1,13 @@
 ﻿using APIService.Infra.Data.Sql.Commands.Common;
 using APIService.Infra.Data.Sql.Queries.Common;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
- 
 using Serilog;
-using System.Text;
 using Zamin.EndPoints.Web.Extensions.ModelBinding;
 using Zamin.Extensions.DependencyInjection;
 using Zamin.Infra.Data.Sql.Commands.Interceptors;
-using Zamin.Utilities.SoftwarePartDetector.Options;
 
 namespace APIService.Endpoints.API.Extentions;
 
@@ -23,7 +18,7 @@ public static class HostingExtensions
         IConfiguration configuration = builder.Configuration;
 
         //zamin
-        builder.Services.AddZaminApiCore("Zamin", "APIService");
+        builder.Services.AddZaminApiCore("SapPlus", "Saapp", "SapPlus.CompanyAPI", "Zamin");
 
         //microsoft
         builder.Services.AddEndpointsApiExplorer();
@@ -48,11 +43,10 @@ public static class HostingExtensions
 
         //zamin
         builder.Services.AddZaminInMemoryCaching();
-        //builder.Services.AddZaminSqlDistributedCache(configuration, "SqlDistributedCache");
 
         //CommandDbContext
         builder.Services.AddDbContext<APIServiceDbContextCommandDbContext>(c => c.UseSqlServer(configuration.GetConnectionString("CommandDb_ConnectionString"))
-            .AddInterceptors(new SetPersianYeKeInterceptor(), new AddAuditDataInterceptor()));
+             .AddInterceptors(new SetPersianYeKeInterceptor(), new AddAuditDataInterceptor()));
 
         //QueryDbContext
         builder.Services.AddDbContext<APIServiceDbContextQueryDbContext>(c => c.UseSqlServer(configuration.GetConnectionString("QueryDb_ConnectionString")));
@@ -70,15 +64,16 @@ public static class HostingExtensions
         //builder.Services.AddZaminTraceJeager(configuration, "OpenTeletmetry");
 
 
+        // Add authentication services
         builder.Services.AddAuthentication("Bearer")
-     .AddJwtBearer("Bearer", options =>
-     {
-         options.Authority = "https://localhost:5001"; // Identity Server URL
-         options.TokenValidationParameters = new TokenValidationParameters
-         {
-             ValidateAudience = false
-         };
-     });
+        .AddJwtBearer("Bearer", options =>
+        {
+            options.Authority = "https://localhost:5001"; // Identity Server URL
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = false
+            };
+        });
 
         builder.Services.AddAuthorization(options =>
         {
