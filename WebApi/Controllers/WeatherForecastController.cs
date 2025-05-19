@@ -4,6 +4,7 @@ namespace WebApi.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
 
+
 [ApiController]
 [Route("[controller]")]
 public sealed class WeatherForecastController : ControllerBase
@@ -13,10 +14,9 @@ public sealed class WeatherForecastController : ControllerBase
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    [HttpGet("forecast")]
+  
+    [HttpGet("weather-forecast")]
     [ProducesResponseType(typeof(IEnumerable<WeatherForecast>), 200)]
-    [ApiExplorerSettings(GroupName = "v1")]
-    [Tags("Weathers")]
     public IEnumerable<WeatherForecast> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast

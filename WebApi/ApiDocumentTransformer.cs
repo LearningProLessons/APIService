@@ -27,14 +27,7 @@ public sealed class ApiDocumentTransformer : IOpenApiDocumentTransformer
                 Url = new Uri("https://opensource.org/licenses/MIT")
             }
         };
-
-        document.Tags = new List<OpenApiTag>
-        {
-            new() { Name = "Transactions", Description = "Management and operations of transactions" },
-            new() { Name = "Clinics", Description = "Management of clinics" },
-            new() { Name = "Accounts", Description = "Therapists' bank accounts" },
-            new() { Name = "Weathers", Description = "Weather information" },
-        };
+ 
 
 
         return Task.CompletedTask;
