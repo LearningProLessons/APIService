@@ -27,7 +27,6 @@ app.MapControllers();
 app.UseSwaggerUI(options => 
 {
     options.SwaggerEndpoint("/openapi/v1.json", "OpenApiDemo");
-    // options.InjectStylesheet("/swagger/swagger-custom.css");
 });
 
 app.MapOpenApi();

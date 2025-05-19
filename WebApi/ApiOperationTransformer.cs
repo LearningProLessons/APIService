@@ -15,9 +15,10 @@ public sealed class ApiOperationTransformer : IOpenApiOperationTransformer
             new() { Name = controllerName }
         };
 
-        operation.Summary = $"[{controllerName}] → عملیات {actionName}";
-        operation.Description = $"این متد مربوط به عملکرد `{actionName}` در کنترلر `{controllerName}` است.";
+        operation.Summary = $"[{controllerName}] → Operation {actionName}";
+        operation.Description = $"This method corresponds to the `{actionName}` action in the `{controllerName}` controller.";
 
         return Task.CompletedTask;
     }
+
 }

@@ -12,12 +12,12 @@ public sealed class ApiDocumentTransformer : IOpenApiDocumentTransformer
     {
         document.Info = new OpenApiInfo
         {
-            Title = "مستندات API پرداخت FinBridge",
+            Title = "FinBridge Payment API Documentation",
             Version = "v1",
-            Description = "این مستندات شامل تمام عملیات مرتبط با تراکنش‌ها، کلینیک‌ها، حساب‌ها و ... است.",
+            Description = "This documentation covers all operations related to transactions, clinics, accounts, and more.",
             Contact = new OpenApiContact
             {
-                Name = "تیم توسعه فین‌بریج",
+                Name = "FinBridge Development Team",
                 Email = "dev@finbridge.ir",
                 Url = new Uri("https://finbridge.ir/support")
             },
@@ -30,11 +30,12 @@ public sealed class ApiDocumentTransformer : IOpenApiDocumentTransformer
 
         document.Tags = new List<OpenApiTag>
         {
-            new() { Name = "Transactions", Description = "مدیریت و عملیات تراکنش‌ها" },
-            new() { Name = "Clinics", Description = "مدیریت کلینیک‌ها" },
-            new() { Name = "Accounts", Description = "حساب‌های بانکی درمانگران" },
-            new() { Name = "Weathers", Description = "آب و هوا" },
+            new() { Name = "Transactions", Description = "Management and operations of transactions" },
+            new() { Name = "Clinics", Description = "Management of clinics" },
+            new() { Name = "Accounts", Description = "Therapists' bank accounts" },
+            new() { Name = "Weathers", Description = "Weather information" },
         };
+
 
         return Task.CompletedTask;
     }

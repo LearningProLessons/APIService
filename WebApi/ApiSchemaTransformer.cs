@@ -9,9 +9,10 @@ public sealed class ApiSchemaTransformer : IOpenApiSchemaTransformer
     {
         if (context.JsonTypeInfo.Type.Name.EndsWith("Dto"))
         {
-            schema.Description = $"مدلی برای {context.JsonTypeInfo.Type.Name} شامل داده‌های خروجی API.";
+            schema.Description = $"A model for {context.JsonTypeInfo.Type.Name} containing API response data.";
         }
 
         return Task.CompletedTask;
     }
+
 }
