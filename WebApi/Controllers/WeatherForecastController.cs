@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/weather")]
 public sealed class WeatherForecastController : ControllerBase
 {
     private static readonly List<WeatherForecast> _forecasts = new();
